@@ -1,0 +1,31 @@
+Build a Personal Finance Management App with the following features:
+
+1. **Transaction Tracking**
+   - Manual entry of income and expenses with fields: category, amount, date, and notes
+   - Support for recurring transactions (e.g., rent, subscriptions) with configurable frequency (weekly, monthly, yearly)
+   - Ability to edit and delete existing transactions
+   - Categorization system with default categories and user-created custom categories
+
+2. **Budget Goals**
+   - Set monthly spending limits per category (e.g., "Food: $400/mo")
+   - Visual progress bar or gauge for each budget showing current spending against the limit
+   - Visual indicators when approaching or exceeding budget (e.g., green/yellow/red states)
+   - Monthly reset of budget tracking
+
+3. **Dashboard with Visual Summaries**
+   - Single-page overview as the main landing screen
+   - Spending breakdown by category displayed as a donut or pie chart
+   - Income vs. expenses over time shown as a bar or line chart
+   - Net savings trend line over selectable time periods (weekly, monthly, yearly)
+   - Summary cards for total income, total expenses, and net balance for the current month
+
+
+4. **CSV Export**
+   - Export all transactions or a filtered subset to CSV
+   - Preserve category, currency, and date formatting on export
+
+6. **Savings Goals**
+   - Create named savings goals with a target amount and optional target date (e.g., "Trip to Japan — $2,000 by August")
+   - Thermometer or progress bar visualization showing current progress toward each goal
+   - Manual contributions toward each goal
+   - Dashboard widget summarizing active savings goals and overall progress

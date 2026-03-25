@@ -1,0 +1,23 @@
+Declare princlples for the following:
+
+Framework: Next.js (App Router strictly) acting as both the frontend and the backend (API Route Handlers).
+
+Database: SQLlite Database.
+
+Language: TypeScript (Strict mode enabled).
+
+Styling: Tailwind CSS integrated with Shadcn UI for clean, accessible, and customizable components.
+
+Client State Management: Zustand for lightweight, unopinionated global UI state.
+
+Server State & Data Fetching: TanStack Query (React Query) for caching, syncing, and updating asynchronous data from the API.
+
+Forms & Validation: React Hook Form coupled with Zod for strict schema validation (critical for financial data).
+
+Backend/ORM: Prisma ORM, specifically configured to use a local SQLite database.
+
+Server vs. Client Components: Maximize the use of Server Components (SSR/RSC) for initial page loads and SEO. Explicitly use the "use client" directive only at the leaves of the component tree where interactivity, hooks, or browser APIs are required.
+
+Clean Code & SOLID: Enforce DRY principles. Create reusable custom hooks for complex logic. Ensure UI components are strictly presentational where possible.
+
+Minimal Depencencies: Use minimal dependencies
