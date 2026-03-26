@@ -62,6 +62,7 @@ export function TransactionForm({ onSuccess, transactionId, defaultValues }: Tra
       currency: "USD",
       date: format(new Date(), "yyyy-MM-dd"),
       isRecurring: false,
+      categoryId: "",
     },
   });
 
