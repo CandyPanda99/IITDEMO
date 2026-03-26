@@ -1,7 +1,0 @@
-import { z } from "zod";
-
-export const CreateCategorySchema = z.object({
-  name: z.string().min(1),
-});
-
-export type CreateCategoryInput = z.infer<typeof CreateCategorySchema>;
