@@ -61,7 +61,7 @@ export function CategoryManager({ open, onOpenChange }: CategoryManagerProps) {
           <SheetTitle>Manage Categories</SheetTitle>
         </SheetHeader>
 
-        <div className="mt-6 space-y-6">
+        <div className="mt-2 space-y-6 px-4 pb-4">
           {/* Default categories */}
           <div>
             <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">
