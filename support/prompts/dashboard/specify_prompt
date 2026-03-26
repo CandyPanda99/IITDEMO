@@ -1,8 +1,8 @@
 
-This specification file should be placed at `dashboard/constitution_prompt`. It covers:
+Build a dashboard page with vizualizations and interactive elements. It should cover following requirements:
 
-1. **Time-period selector** (Weekly/Monthly/Yearly) with navigation and URL sync
-2. **Spending breakdown donut chart** with interactivity and legends
+1. **Time-period selector** (Weekly/Monthly/Yearly) All information/vizualizations should be filtered based on the time period
+2. **Spending breakdown donut chart** with interactivity and legends per each category.
 3. **Income vs. Expenses grouped bar chart** with sub-period granularity that adapts per view
 4. **Budget goals progress section** with color-coded states (green/yellow/red)
 5. **Savings goals widget** with thermometer bars and projected completion
