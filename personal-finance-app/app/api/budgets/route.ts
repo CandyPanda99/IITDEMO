@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/db";
 import { CreateBudgetSchema } from "@/lib/validations/budget";
-import { startOfMonth, endOfMonth } from "date-fns";
+import { startOfMonth, endOfMonth, startOfDay } from "date-fns";
 import { NextRequest, NextResponse } from "next/server";
 
 async function computeBudgetWithSpending(budgetId: string) {
@@ -15,7 +15,7 @@ async function computeBudgetWithSpending(budgetId: string) {
   const monthEnd = endOfMonth(now);
   // Start counting from the later of: start of month OR budget creation date
   const spendingStart =
-    budget.createdAt > monthStart ? budget.createdAt : monthStart;
+    budget.createdAt > monthStart ? startOfDay(budget.createdAt) : monthStart;
 
   const agg = await prisma.transaction.aggregate({
     _sum: { amount: true },

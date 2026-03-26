@@ -17,7 +17,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useCategories } from "@/hooks/use-categories";
-import { useCreateTransaction } from "@/hooks/use-transactions";
+import { useCreateTransaction, useUpdateTransaction } from "@/hooks/use-transactions";
 import { format } from "date-fns";
 
 const LocalTransactionSchema = z.object({
@@ -38,11 +38,15 @@ type FormData = z.infer<typeof LocalTransactionSchema>;
 
 interface TransactionFormProps {
   onSuccess?: () => void;
+  transactionId?: string;
+  defaultValues?: Partial<FormData>;
 }
 
-export function TransactionForm({ onSuccess }: TransactionFormProps) {
+export function TransactionForm({ onSuccess, transactionId, defaultValues }: TransactionFormProps) {
   const { data: categories } = useCategories();
   const createTransaction = useCreateTransaction();
+  const updateTransaction = useUpdateTransaction();
+  const isEditing = Boolean(transactionId);
 
   const {
     register,
@@ -53,7 +57,7 @@ export function TransactionForm({ onSuccess }: TransactionFormProps) {
     formState: { errors, isSubmitting },
   } = useForm<FormData>({
     resolver: zodResolver(LocalTransactionSchema),
-    defaultValues: {
+    defaultValues: defaultValues ?? {
       type: "EXPENSE",
       currency: "USD",
       date: format(new Date(), "yyyy-MM-dd"),
@@ -66,12 +70,19 @@ export function TransactionForm({ onSuccess }: TransactionFormProps) {
 
   const onSubmit = async (data: FormData) => {
     try {
-      await createTransaction.mutateAsync({
+      const payload = {
         ...data,
         amount: Number(data.amount),
         date: data.date,
-      });
-      toast.success("Transaction added successfully");
+      };
+      
+      if (isEditing && transactionId) {
+        await updateTransaction.mutateAsync({ id: transactionId, data: payload });
+        toast.success("Transaction updated successfully");
+      } else {
+        await createTransaction.mutateAsync(payload);
+        toast.success("Transaction added successfully");
+      }
       reset({
         type: "EXPENSE",
         currency: "USD",
@@ -112,9 +123,11 @@ export function TransactionForm({ onSuccess }: TransactionFormProps) {
       {/* Category */}
       <div className="space-y-1">
         <Label htmlFor="categoryId">Category</Label>
-        <Select onValueChange={(v) => setValue("categoryId", String(v ?? ""))}>
+        <Select value={watch("categoryId")} onValueChange={(v) => setValue("categoryId", String(v ?? ""))}>
           <SelectTrigger>
-            <SelectValue placeholder="Select a category" />
+            <SelectValue placeholder="Select a category">
+              {categories?.find(c => c.id === watch("categoryId"))?.name || "Select a category"}
+            </SelectValue>
           </SelectTrigger>
           <SelectContent>
             {categories?.map((cat) => (
@@ -201,7 +214,7 @@ export function TransactionForm({ onSuccess }: TransactionFormProps) {
       )}
 
       <Button type="submit" disabled={isSubmitting} className="w-full">
-        {isSubmitting ? "Adding..." : "Add Transaction"}
+        {isSubmitting ? "Saving..." : isEditing ? "Save Changes" : "Add Transaction"}
       </Button>
     </form>
   );

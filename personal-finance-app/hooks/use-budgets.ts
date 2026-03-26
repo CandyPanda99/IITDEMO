@@ -51,7 +51,7 @@ export function useCreateBudget() {
       queryClient.invalidateQueries({ queryKey: ["budgets"] });
       toast.success("Budget created");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: Error) => toast.error(typeof err.message === 'string' && err.message.startsWith('{') ? JSON.parse(err.message).formErrors?.[0] || 'An error occurred' : err.message),
   });
 }
 
@@ -80,7 +80,7 @@ export function useUpdateBudget() {
       queryClient.invalidateQueries({ queryKey: ["budgets"] });
       toast.success("Budget updated");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: Error) => toast.error(typeof err.message === 'string' && err.message.startsWith('{') ? JSON.parse(err.message).formErrors?.[0] || 'An error occurred' : err.message),
   });
 }
 
@@ -95,6 +95,6 @@ export function useDeleteBudget() {
       queryClient.invalidateQueries({ queryKey: ["budgets"] });
       toast.success("Budget deleted");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: Error) => toast.error(typeof err.message === 'string' && err.message.startsWith('{') ? JSON.parse(err.message).formErrors?.[0] || 'An error occurred' : err.message),
   });
 }

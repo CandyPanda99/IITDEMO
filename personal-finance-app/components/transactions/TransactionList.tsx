@@ -157,7 +157,26 @@ export function TransactionList() {
           <DialogHeader>
             <DialogTitle>Edit Transaction</DialogTitle>
           </DialogHeader>
-          <TransactionForm onSuccess={() => setEditId(null)} />
+          {editId && (
+            <TransactionForm
+              transactionId={editId}
+              defaultValues={(() => {
+                const t = transactions?.find((t) => t.id === editId);
+                if (!t) return undefined;
+                return {
+                  type: t.type,
+                  categoryId: t.categoryId,
+                  amount: Number(t.amount),
+                  currency: t.currency,
+                  date: format(new Date(t.date), "yyyy-MM-dd"),
+                  notes: t.notes || undefined,
+                  isRecurring: t.isRecurring,
+                  recurringFrequency: t.recurringFrequency || undefined,
+                };
+              })()}
+              onSuccess={() => setEditId(null)}
+            />
+          )}
         </DialogContent>
       </Dialog>
     </>

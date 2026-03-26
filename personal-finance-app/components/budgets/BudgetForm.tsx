@@ -92,7 +92,9 @@ export function BudgetForm({
                 onValueChange={(val) => setValue("categoryId", String(val ?? ""))}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="Select category" />
+                  <SelectValue placeholder="Select category">
+                    {categories.find(c => c.id === categoryId)?.name || "Select category"}
+                  </SelectValue>
                 </SelectTrigger>
                 <SelectContent>
                   {categories.map((c) => (
@@ -115,6 +117,7 @@ export function BudgetForm({
               step="0.01"
               min="0.01"
               {...register("monthlyLimit", { valueAsNumber: true })}
+              onFocus={(e) => e.target.select()}
               placeholder="0.00"
             />
             {errors.monthlyLimit && (

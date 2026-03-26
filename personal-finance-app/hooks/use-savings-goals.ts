@@ -58,7 +58,7 @@ export function useCreateSavingsGoal() {
       queryClient.invalidateQueries({ queryKey: ["dashboard"] });
       toast.success("Savings goal created");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: Error) => toast.error(typeof err.message === 'string' && err.message.startsWith('{') ? JSON.parse(err.message).formErrors?.[0] || 'An error occurred' : err.message),
   });
 }
 
@@ -88,7 +88,7 @@ export function useUpdateSavingsGoal() {
       queryClient.invalidateQueries({ queryKey: ["dashboard"] });
       toast.success("Savings goal updated");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: Error) => toast.error(typeof err.message === 'string' && err.message.startsWith('{') ? JSON.parse(err.message).formErrors?.[0] || 'An error occurred' : err.message),
   });
 }
 
@@ -104,7 +104,7 @@ export function useDeleteSavingsGoal() {
       queryClient.invalidateQueries({ queryKey: ["dashboard"] });
       toast.success("Savings goal deleted");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: Error) => toast.error(typeof err.message === 'string' && err.message.startsWith('{') ? JSON.parse(err.message).formErrors?.[0] || 'An error occurred' : err.message),
   });
 }
 
@@ -133,6 +133,6 @@ export function useAddContribution() {
       queryClient.invalidateQueries({ queryKey: ["dashboard"] });
       toast.success("Contribution added");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: Error) => toast.error(typeof err.message === 'string' && err.message.startsWith('{') ? JSON.parse(err.message).formErrors?.[0] || 'An error occurred' : err.message),
   });
 }

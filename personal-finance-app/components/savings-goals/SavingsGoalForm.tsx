@@ -55,10 +55,14 @@ export function SavingsGoalForm({
   }, [open, defaultValues, reset]);
 
   const onSubmit = async (data: SavingsGoalFormValues) => {
+    const payload = {
+      ...data,
+      targetDate: data.targetDate === "" ? undefined : data.targetDate,
+    };
     if (isEditing && goalId) {
-      await updateGoal.mutateAsync({ id: goalId, ...data });
+      await updateGoal.mutateAsync({ id: goalId, ...payload });
     } else {
-      await createGoal.mutateAsync(data);
+      await createGoal.mutateAsync(payload);
     }
     onOpenChange(false);
   };
