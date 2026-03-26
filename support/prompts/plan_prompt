@@ -1,0 +1,11 @@
+Create a comprehensive technical implementation plan for a personal-finance-app using Next.js (App Router) and TypeScript.
+
+Technical Requirements:
+
+Database & ORM: Use Prisma ORM with SQLite for local development and simplified hosting.
+
+State Management: Implement a robust state management solution using Zustand (or TanStack Query for server state) to handle global application logic.
+
+API Architecture: Use Next.js Server Actions for data mutations and Route Handlers where necessary for standard API access.
+
+Styling: Use Tailwind CSS for a responsive, modern UI.
