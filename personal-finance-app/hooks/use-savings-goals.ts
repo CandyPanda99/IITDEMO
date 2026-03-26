@@ -55,7 +55,6 @@ export function useCreateSavingsGoal() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["savings-goals"] });
-      queryClient.invalidateQueries({ queryKey: ["dashboard"] });
       toast.success("Savings goal created");
     },
     onError: (err: Error) => toast.error(typeof err.message === 'string' && err.message.startsWith('{') ? JSON.parse(err.message).formErrors?.[0] || 'An error occurred' : err.message),
@@ -85,7 +84,6 @@ export function useUpdateSavingsGoal() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["savings-goals"] });
-      queryClient.invalidateQueries({ queryKey: ["dashboard"] });
       toast.success("Savings goal updated");
     },
     onError: (err: Error) => toast.error(typeof err.message === 'string' && err.message.startsWith('{') ? JSON.parse(err.message).formErrors?.[0] || 'An error occurred' : err.message),
@@ -101,7 +99,6 @@ export function useDeleteSavingsGoal() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["savings-goals"] });
-      queryClient.invalidateQueries({ queryKey: ["dashboard"] });
       toast.success("Savings goal deleted");
     },
     onError: (err: Error) => toast.error(typeof err.message === 'string' && err.message.startsWith('{') ? JSON.parse(err.message).formErrors?.[0] || 'An error occurred' : err.message),
@@ -130,7 +127,6 @@ export function useAddContribution() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["savings-goals"] });
-      queryClient.invalidateQueries({ queryKey: ["dashboard"] });
       toast.success("Contribution added");
     },
     onError: (err: Error) => toast.error(typeof err.message === 'string' && err.message.startsWith('{') ? JSON.parse(err.message).formErrors?.[0] || 'An error occurred' : err.message),

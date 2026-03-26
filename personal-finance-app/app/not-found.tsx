@@ -12,7 +12,7 @@ export default function NotFoundPage() {
         href="/"
         className="rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground hover:bg-primary/90 transition-colors"
       >
-        Go to Dashboard
+        Go to Home
       </Link>
     </div>
   );
