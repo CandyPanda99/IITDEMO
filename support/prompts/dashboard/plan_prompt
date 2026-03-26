@@ -1,0 +1,3 @@
+Create a comprehensive technical implementation plan for implementing the dashboard with Rechart library or any other supported library.
+1. **Use minimal external dependency** and justify the necessity.
+2. **Use tailwind and shadcn** if required for external styling
